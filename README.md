@@ -11,26 +11,33 @@ Collapsable Video Examples:
 
 Scroll down for more example types....
 
-1
-2
-3
-4
-5
-6
-7
-8
+1 extra line
+
+2 extra line
+
+3 extra line
+
+4 extra line
+
+5 extra line
+
+6 extra line
+
+7 extra line
+
+8 extra line
 9
-10
+10 extra line
 11
-12
+12 extra line
 13
-14
+14 extra line
 15
-16
+16 extra line
 17
-18
+18 extra line
 19
-20
+20 extra line
 
 **Embedded video makes the guide messy:**
 
