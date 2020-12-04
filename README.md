@@ -5,9 +5,13 @@
 Collapsable Video Examples:
 <details>
   <summary>Click to expand!</summary>
+  
   ## Security Example #1
+
 [![asciicast](https://asciinema.org/a/332708.svg)](https://asciinema.org/a/332708)
+
 </details>
+
 
 Scroll down for more example types....
 
