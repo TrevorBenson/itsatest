@@ -5,6 +5,14 @@ env:
   # Setting an environment variable with the value of a configuration variable
   G_ACCOUNT: ${{ vars.G_ACCOUNT }}
 jobs:
+  test-gh-workflow-variables:
+    steps:
+      - name: Check repository owner as environment variable
+        run: |
+          echo "Owner: ${GITHUB_REPOSITORY_OWNER}"
+      - name: Check repository owner as environment jinja tag
+        run: |
+          echo "Owner: ${{ env.GITHUB_REPOSITORY_OWNER }}"
   test-repo-variables:
     env:
       JOB_VAR: ${{ vars.G_ACCOUNT }}
