@@ -51,7 +51,10 @@ jobs:
   test-seperate-job-access-created-variables:
     runs-on: ubuntu-latest
     needs: test-created-variables
+    env:
+      VERSION:  ${{ needs.test-created-variables.env.VERSION }}
+      VERSION2: ${{ needs.test-created-variables.outputs.VERSION }}
     steps:
       - name: Examine VERSION and VERSION2 as jinja variables
         run: |
-          echo -e "Variables \n\t- VERSION: ${{ env.VERSION }} \n\t- VERSION2: ${{ steps.my-github-output-variable.outputs.VERSION }}"
+          echo -e "Variables \n\t- VERSION: ${VERSION} \n\t- VERSION2: ${VERSION2}"
