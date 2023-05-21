@@ -1,0 +1,33 @@
+name: Test variables
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0 */5 * *'
+jobs:
+  test-veriables-job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if G_ACCOUNT is a hidden variable
+        run: |
+          echo "${G_ACCOUNT}"
+      - name: Test REPO_VARIABLE_1
+        run: |
+          echo "${REPO_VARIABLE_1}"
+      - name: Fetch release version from external repo
+        run: |
+          curl -sL https://raw.githubusercontent.com/trezor/data/master/bridge/latest.txt | grep tag_name | awk '{print $2}' | cut -d\" -f 2 > files/docker/node/release-versions/trezor-bridge-latest.txt
+      - name: Create a variable named VERSION using environment file
+        run: |
+          echo "{VERSION}={$(cat ./files/docker/node/release-versions/trezor-bridge-latest.txt)} >> $GITHUB_ENV
+      - name: Create a variable named VERSION2 using output file
+        run: |
+          echo "{VERSION2}={$(cat ./files/docker/node/release-versions/trezor-bridge-latest.txt)} >> $GITHUB_OUTPUT
+      - name: Examine VERSION and VERSION2
+        run: |
+          echo -e "\n\tVariables \n\t\t- VERSION: ${VERSION} \n\t\t- VERSION2: ${VERSION2}"
+  test-veriables-job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Examine VERSION and VERSION2
+        run: |
+          echo -e "\n\tVariables \n\t\t- VERSION: ${VERSION} \n\t\t- VERSION2: ${VERSION2}"
