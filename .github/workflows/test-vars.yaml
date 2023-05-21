@@ -6,6 +6,7 @@ env:
   G_ACCOUNT: ${{ vars.G_ACCOUNT }}
 jobs:
   test-gh-workflow-variables:
+    runs-on: ubuntu-latest
     steps:
       - name: Check repository owner as environment variable
         run: |
