@@ -1,20 +1,34 @@
 name: Test variables
 on:
   workflow_dispatch:
+env:
+  # Setting an environment variable with the value of a configuration variable
+  G_ACCOUNT: ${{ vars.G_ACCOUNT }}
 jobs:
   test-repo-variables:
+    env:
+      JOB_VAR: ${{ vars.G_ACCOUNT }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check if REPO_VARIABLE_1 and G_ACCOUNT are known before a checkout
+      - name: Check if REPO_VARIABLE_1 and G_ACCOUNT are known before a checkout inside vars context
         run: |
-          echo "Variables: \n\t- Repo var 1: ${REPO_VARIABLE_1} \n\t- G account: ${G_ACCOUNT}"
+          echo "Variables: \n\t- Repo var 1: ${{ vars.REPO_VARIABLE_1 }} \n\t- G account: ${{ vars.G_ACCOUNT }}"
       - name: Now checkout the repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Check if REPO_VARIABLE_1 and G_ACCOUNT  is a known after a checkout
         run: |
-          echo "Variables: \n\t- Repo var 1: ${REPO_VARIABLE_1} \n\t- G account: ${G_ACCOUNT}"
+          echo "Variables: \n\t- Repo var 1: ${{ vars.REPO_VARIABLE_1 }} \n\t- G account: ${{ vars.G_ACCOUNT }}"
+      - name: Check that JOB_VAR variable is available inside the job
+        run: |
+          echo "Variables: \n\t- JOB_VAR: ${JOB_VAR}"
+      - name: Check that STEP_VAR variable is available
+        env:
+          STEP_VAR:  ${{ vars.G_ACCOUNT }}
+        run: |
+          echo "Variables: \n\t- STEP_VAR: ${STEP_VAR}"
+          
   test-created-variables:
     runs-on: ubuntu-latest
     steps:
