@@ -67,3 +67,12 @@ jobs:
       - name: Examine VERSION and VERSION2 as jinja variables
         run: |
           echo -e "Variables \n\t- VERSION: ${VERSION} \n\t- VERSION2: ${VERSION2}"
+  test-summary-variable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Examine the bare variable
+        run: |
+          echo "${GITHUB_SUMMARY}"
+      - name: Attempt to add something to summary
+        run: |
+          echo "# A Summary Title" >> $GITHUB_STEP_SUMMARY
