@@ -54,4 +54,4 @@ jobs:
     steps:
       - name: Examine VERSION and VERSION2 as jinja variables
         run: |
-          echo -e "Variables \n\t- VERSION: ${{ env.VERSION }} \n\t- VERSION2: ${{ steps.my-github-output-variable.outputs.VERSION2 }}"
+          echo -e "Variables \n\t- VERSION: ${{ env.VERSION }} \n\t- VERSION2: ${{ steps.my-github-output-variable.outputs.VERSION }}"
