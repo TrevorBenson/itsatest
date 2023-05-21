@@ -7,14 +7,14 @@ jobs:
     steps:
       - name: Check if REPO_VARIABLE_1 and G_ACCOUNT are known before a checkout
         run: |
-          echo "${REPO_VARIABLE_1} - ${G_ACCOUNT}"
+          echo "Variables: \n\t- Repo var 1: ${REPO_VARIABLE_1} \n\t- G account: ${G_ACCOUNT}"
       - name: Now checkout the repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Check if REPO_VARIABLE_1 and G_ACCOUNT  is a known after a checkout
         run: |
-          echo "${REPO_VARIABLE_1} - ${G_ACCOUNT}"
+          echo "Variables: \n\t- Repo var 1: ${REPO_VARIABLE_1} \n\t- G account: ${G_ACCOUNT}"
   test-created-variables:
     runs-on: ubuntu-latest
     steps:
@@ -23,17 +23,17 @@ jobs:
           echo "1.0.7" > ./version.txt
       - name: Create a variable named VERSION using environment file
         run: |
-          echo "{VERSION}={$(cat ./version.txt)} >> $GITHUB_ENV
+          echo "{VERSION}={$(cat ./version.txt)}" >> $GITHUB_ENV
       - name: Create a variable named VERSION2 using output file
         run: |
-          echo "{VERSION2}={$(cat ./version.txt)} >> $GITHUB_OUTPUT
+          echo "{VERSION2}={$(cat ./version.txt)}" >> $GITHUB_OUTPUT
       - name: Examine VERSION and VERSION2
         run: |
-          echo -e "\n\tVariables \n\t\t- VERSION: ${VERSION} \n\t\t- VERSION2: ${VERSION2}"
+          echo -e "Variables \n\t- VERSION: ${VERSION} \n\t- VERSION2: ${VERSION2}"
   test-seperate-job-access-created-variables:
     runs-on: ubuntu-latest
     needs: test-created-variables
     steps:
       - name: Examine VERSION and VERSION2
         run: |
-          echo -e "\n\tVariables \n\t\t- VERSION: ${VERSION} \n\t\t- VERSION2: ${VERSION2}"
+          echo -e "Variables \n\t- VERSION: ${VERSION} \n\t- VERSION2: ${VERSION2}"
