@@ -39,22 +39,19 @@ jobs:
         run: |
           echo -e "VERSION=1.99.20" >> $GITHUB_ENV
       - name: Create a variable named VERSION2 using output file
-        id: myversion2
+        id: my-github-output-variable
         run: |
           echo -e "VERSION=2.44.21" >> $GITHUB_OUTPUT
       - name: Examine VERSION and VERSION2
         env:
           VERSION: ${{ env.VERSION }}
-          VERSION2: ${{ steps.myversion2.outputs.VERSION2 }}
+          VERSION2: ${{ steps.my-github-output-variable.outputs.VERSION }}
         run: |
           echo -e "Variables \n\t- VERSION: ${VERSION} \n\t- VERSION2: ${VERSION2}"
   test-seperate-job-access-created-variables:
     runs-on: ubuntu-latest
     needs: test-created-variables
     steps:
-      - name: Examine VERSION and VERSION2 as native environment
-        run: |
-          echo -e "Variables \n\t- VERSION: ${VERSION} \n\t- VERSION2: ${VERSION2}"
       - name: Examine VERSION and VERSION2 as jinja variables
         run: |
-          echo -e "Variables \n\t- VERSION: ${{ env.VERSION }} \n\t- VERSION2: ${{ steps.myversion2.outputs.VERSION2 }}"
+          echo -e "Variables \n\t- VERSION: ${{ env.VERSION }} \n\t- VERSION2: ${{ steps.my-github-output-variable.outputs.VERSION2 }}"
