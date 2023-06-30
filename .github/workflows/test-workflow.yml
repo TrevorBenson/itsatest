@@ -12,12 +12,12 @@ env:
   # those I'm sure they work
   image_path: 'spark-dev/deployment'
   # those not entirely sure but worth the shot.
-  staging_archive: spark-offline-archive-${{ inputs.tag }}${{ inputs.prerelease == true && '-prerelease' || '' }}.run
+  staging_archive: spark-offline-archive-${{ inputs.prerelease == true && '-prerelease' || '' }}.run
 
 
 jobs:
   setting-env-vars:
-    runs-un: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: test access to staging_archive env var
         run: |
