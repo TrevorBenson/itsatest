@@ -15,4 +15,4 @@ jobs:
       - name: Access the ENV variable from the prior step
         run: |
           echo access the variable later: ${{ env.myvalue }}
-          echo access the tee'd variable later: ${{ env.myvalue2 }}
+          echo access the teed variable later: ${{ env.myvalue2 }}
