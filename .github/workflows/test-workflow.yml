@@ -1,4 +1,4 @@
-name: Test $GITHUB_ENV
+name: Test Tee Into $GITHUB files
 
 on:
   workflow_dispatch:
