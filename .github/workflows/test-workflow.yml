@@ -1,4 +1,18 @@
-name: Test Any Workflow
+name: Test ENV from Inputs Workflow
 
 on:
   workflow_dispatch:
+
+env:
+  # those I'm sure they work
+  image_path: 'spark-dev/deployment'
+  # those not entirely sure but worth the shot.
+  staging_archive: spark-offline-archive-${{ inputs.tag }}${{ if inputs.prerelease '-prerelease' else '' }}.run
+
+job:
+  setting-env-vars:
+    runs-un: ubuntu-latest
+    steps:
+      - name: test access to staging_archive env var
+        run: |
+          echo ${{ env.staging_archive }}
