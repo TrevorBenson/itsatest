@@ -2,12 +2,18 @@ name: Test ENV from Inputs Workflow
 
 on:
   workflow_dispatch:
-
+    inputs:
+      prerelease:
+        description: Is the release a pre release?
+        type: boolean
+        required: false
+        default: false
 env:
   # those I'm sure they work
   image_path: 'spark-dev/deployment'
   # those not entirely sure but worth the shot.
-  staging_archive: spark-offline-archive-${{ inputs.tag }}${{ inputs.prerelease '-prerelease' }}.run
+  staging_archive: spark-offline-archive-${{ inputs.tag }}${{ inputs.prerelease == true && '-prerelease' || '' }}.run
+
 
 jobs:
   setting-env-vars:
