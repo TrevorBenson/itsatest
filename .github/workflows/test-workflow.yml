@@ -1,4 +1,16 @@
-name: Test Any Workflow
+name: Test Chaining Environment Variables in ENV Workflow
 
 on:
   workflow_dispatch:
+
+env:
+  variable1: itsmyvalue
+  variable2: something-with-${{ env.variable1 }}-in-its-string
+  
+jobs:
+  examine-variable-nesting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Examine variable2
+        run: |
+          echo ${{ env.variable2 }}
