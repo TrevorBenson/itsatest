@@ -7,7 +7,7 @@ env:
   # those I'm sure they work
   image_path: 'spark-dev/deployment'
   # those not entirely sure but worth the shot.
-  staging_archive: spark-offline-archive-${{ inputs.tag }}${{ if inputs.prerelease '-prerelease' else '' }}.run
+  staging_archive: spark-offline-archive-${{ inputs.tag }}${{ inputs.prerelease '-prerelease' else '' }}.run
 
 jobs:
   setting-env-vars:
