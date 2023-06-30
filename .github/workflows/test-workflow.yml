@@ -9,7 +9,7 @@ env:
   # those not entirely sure but worth the shot.
   staging_archive: spark-offline-archive-${{ inputs.tag }}${{ if inputs.prerelease '-prerelease' else '' }}.run
 
-job:
+jobs:
   setting-env-vars:
     runs-un: ubuntu-latest
     steps:
