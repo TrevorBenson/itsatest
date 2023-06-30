@@ -1,1 +1,4 @@
+name: Test Any Workflow
 
+on:
+  workflow_dispatch:
