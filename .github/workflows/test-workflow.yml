@@ -1,1 +1,18 @@
+name: Test $GITHUB_ENV
 
+on:
+  workflow_dispatch:
+
+run-name: Test $GITHUB_ENV access in same step
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create one ENV variable and access it immediately
+        run: |
+          echo "myvalue=some.string.of.text" >> $GITHUB_ENV
+          echo access the variable immediately: ${{ env.myvalue }}
+      - name: Access the ENV variable from the prior step
+        run: |
+          echo access the variable later: ${{ env.myvalue }}
