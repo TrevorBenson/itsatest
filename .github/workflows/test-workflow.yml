@@ -1,4 +1,4 @@
-name: Test Any Workflow
+name: Test Checkout Directories Workflow
 
 on:
   workflow_dispatch:
