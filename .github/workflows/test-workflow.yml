@@ -11,8 +11,10 @@ jobs:
     steps:
       - name: Create one ENV variable and access it immediately
         run: |
-          echo "myvalue=some.string.of.text" >> $GITHUB_ENV
+          echo "myvalue=some.string.of.text" | tee -a $GITHUB_OUTPUT >> $GITHUB_ENV
+          echo "myvalue2=some.other.string.of.text" | tee -a $GITHUB_ENV >> $GITHUB_OUTPUT
           echo access the variable immediately: ${{ env.myvalue }}
       - name: Access the ENV variable from the prior step
         run: |
           echo access the variable later: ${{ env.myvalue }}
+          echo access the tee'd variable later: ${{ env.myvalue2 }}
