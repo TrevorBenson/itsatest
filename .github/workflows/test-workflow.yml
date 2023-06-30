@@ -2,6 +2,15 @@ name: Test Tee Into $GITHUB files
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to be released
+        required: true
+      prerelease:
+        description: Is the release a pre release?
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   test:
@@ -16,3 +25,11 @@ jobs:
         run: |
           echo access the variable later: ${{ env.myvalue }}
           echo access the teed variable later: ${{ env.myvalue2 }}
+      - name: Execute if not prerelease
+        run: |
+          echo "GA, not a prerelease"
+        if: ${{ ! inputs.prerelease }}
+      - name: Execute if a prerelease
+        run: |
+          echo "Prerelease, not a GA"
+        if: ${{ inputs.prerelease }}
