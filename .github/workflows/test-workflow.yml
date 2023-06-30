@@ -3,8 +3,6 @@ name: Test Tee Into $GITHUB files
 on:
   workflow_dispatch:
 
-run-name: Test $GITHUB_ENV access in same step
-
 jobs:
   test:
     runs-on: ubuntu-latest
