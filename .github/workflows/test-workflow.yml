@@ -2,3 +2,21 @@ name: Test Any Workflow
 
 on:
   workflow_dispatch:
+
+jobs:
+  directories-after-checkouts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Directory prior to the checkout and its contents
+        run: |
+          echo "Path: $(pwd)"
+          echo "Contents: $(ls -la)"
+          echo "Find: $(find .)"
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Directory after checkout and its contents
+        run: |
+          echo "Path: $(pwd)"
+          echo "Contents: $(ls -la)"
+          echo "Find: $(find .)"
+      
