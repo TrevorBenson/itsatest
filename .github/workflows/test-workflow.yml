@@ -14,9 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: ghcr
     steps:
-      - name: Check if REGISTRY input exists
+      - name: Check if REGISTRY environment input exists
         run: |
           echo "Using registry input value: ${{ env.REGISTRY }}"
-      - name: Check if REGISTRY_USER secret exists
+      - name: Check if VAR1 environment input exists
+        run: |
+          echo "Using VAR1 input value: ${{ env.VAR1 }}"
+      - name: Check if VAR2 environment input exists
+        run: |
+          echo "Using VAR2 input value: ${{ env.VAR2 }}"
+      - name: Check if REGISTRY_USER secret input exists
         run: |
           echo "Using registry input value: ${{ secrets.REGISTRY_PASSWORD }}"
