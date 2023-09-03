@@ -12,9 +12,7 @@ on:
 jobs:
   example_job:
     runs-on: ubuntu-latest
-    env:
-      PROJ_ENV: ${{ github.event.inputs.project_environment || 'ghcr' }}
-    environment: "${{ env.PROJ_ENV }}"
+    environment: ${{ github.event.inputs.project_environment || 'ghcr' }}
     steps:
       - name: Check if REGISTRY input exists
         run: |
