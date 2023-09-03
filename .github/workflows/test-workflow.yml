@@ -1,24 +1,19 @@
-name: Test ENV from Inputs Workflow
+name: Example Workflow Dispatch
 
 on:
   workflow_dispatch:
     inputs:
-      prerelease:
-        description: Is the release a pre release?
-        type: boolean
+      registry:
+        description: Docker registry to use
         required: false
-        default: false
-env:
-  # those I'm sure they work
-  image_path: 'spark-dev/deployment'
-  # those not entirely sure but worth the shot.
-  staging_archive: spark-offline-archive-${{ inputs.prerelease == true && '-prerelease' || '' }}.run
-
+        default: 'ghcr.io'
 
 jobs:
-  setting-env-vars:
+  example_job:
     runs-on: ubuntu-latest
+    env:
+      REGISTRY: ${{ github.event.inputs.registry || 'ghcr.io' }}
     steps:
-      - name: test access to staging_archive env var
+      - name: Check if registry input exists
         run: |
-          echo ${{ env.staging_archive }}
+          echo "Using registry input value: ${{ env.REGISTRY }}"
