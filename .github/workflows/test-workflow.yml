@@ -16,4 +16,4 @@ jobs:
     steps:
       - name: Check if REGISTRY input exists
         run: |
-          echo "Using registry input value: ${{ env.REGISTRY }}"
+          echo "Using registry input value: ${{ environment.REGISTRY }}"
