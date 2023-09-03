@@ -12,8 +12,11 @@ on:
 jobs:
   example_job:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.project_environment || 'ghcr' }}
+    environment: ghcr
     steps:
       - name: Check if REGISTRY input exists
         run: |
-          echo "Using registry input value: ${{ environment.REGISTRY }}"
+          echo "Using registry input value: ${{ env.REGISTRY }}"
+      - name: Check if REGISTRY_USER secret exists
+        run: |
+          echo "Using registry input value: ${{ secrets.REGISTRY_PASSWORD }}"
