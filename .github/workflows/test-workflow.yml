@@ -26,3 +26,18 @@ jobs:
       - name: Check if REGISTRY_PASSWORD secret input exists
         run: |
           echo "Using registry input value: ${{ secrets.REGISTRY_PASSWORD }}"
+      - name: Add summary details
+        if: always()
+        run: |
+          echo "## Summary Details" >> $GITHUB_STEP_SUMMARY
+          echo "| Name | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "| ---- | ----- |" >> $GITHUB_STEP_SUMMARY
+          echo "| Pre-Merge Guild Deploy Image | registry.io/my_reponame/guild-deploy:COMMIT_HASH |" >> $GITHUB_STEP_SUMMARY
+          echo "| IMAGE_ID1 | 186ef792f8dee9aa3aa21f05b4cb5a4c4cf91146 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Pre-Merge Cabal Build Image | registry.io/my_reponame/cabal:COMMIT_HASH |" >> $GITHUB_STEP_SUMMARY
+          echo "| IMAGE_ID2 | a21f05b4cb5a4c4cf91146186ef792f8dee9aa3a |" >> $GITHUB_STEP_SUMMARY
+          echo "| G_ACCOUNT | Its_Me |" >> $GITHUB_STEP_SUMMARY
+          echo "| BRANCH | my_branch |" >> $GITHUB_STEP_SUMMARY
+          echo "| COMMIT | COMMIT_HASH |" >> $GITHUB_STEP_SUMMARY
+          echo "| CARDANO_NODE_VERSION | 1.21 gigawats |" >> $GITHUB_STEP_SUMMARY
+          echo "| GHC_VERSION | 4.1.5 |" >> $GITHUB_STEP_SUMMARY
