@@ -6,7 +6,7 @@ on:
     inputs:
       registry:
         description: Docker registry to use
-        required: false
+        required: true
         default: 'ghcr.io'
 
 jobs:
