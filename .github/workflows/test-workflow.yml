@@ -1,4 +1,21 @@
-name: Test Any Workflow
+name: Example Workflow Dispatch
 
 on:
+  push:
   workflow_dispatch:
+    inputs:
+      project_environment:
+        description: Which project environment to use
+        required: true
+        default: ghcr
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    env:
+      PROJ_ENV: ${{ github.event.inputs.project_environment || 'ghcr' }}
+    environment: ${{ env.PROJ_ENV }}
+    steps:
+      - name: Check if REGISTRY input exists
+        run: |
+          echo "Using registry input value: ${{ env.REGISTRY }}"
