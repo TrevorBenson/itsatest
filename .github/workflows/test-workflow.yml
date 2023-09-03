@@ -12,8 +12,11 @@ on:
 jobs:
   example_job:
     runs-on: ubuntu-latest
-    environment: ghcr
+    environment: ${{ github.event.inputs.project_environment || 'ghcr' }}
     steps:
+      - name: Check name of the job environment that is loaded
+        run: |
+          echo "job environment: ${{ env.GITHUB_ENVIRONMENT }}"
       - name: Check if REGISTRY environment input exists
         run: |
           echo "Using registry input value: ${{ vars.REGISTRY }}"
