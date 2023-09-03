@@ -14,9 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.project_environment || 'ghcr' }}
     steps:
-      - name: Check name of the job environment that is loaded
-        run: |
-          echo "job environment: ${{ env.GITHUB_ENVIRONMENT }}"
       - name: Check if REGISTRY environment input exists
         run: |
           echo "Using registry input value: ${{ vars.REGISTRY }}"
@@ -26,6 +23,6 @@ jobs:
       - name: Check if VAR2 environment input exists
         run: |
           echo "Using VAR2 input value: ${{ vars.VAR2 }}"
-      - name: Check if REGISTRY_USER secret input exists
+      - name: Check if REGISTRY_PASSWORD secret input exists
         run: |
           echo "Using registry input value: ${{ secrets.REGISTRY_PASSWORD }}"
