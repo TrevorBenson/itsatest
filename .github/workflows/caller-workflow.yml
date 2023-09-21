@@ -1,0 +1,14 @@
+name: Call another workflow and pass it inputs
+
+on:
+  push:
+    tags:
+      - "*"
+
+
+jobs:
+  call-reusable-workflow:
+    uses: TrevorBenson/itsatest/.github/workflow/callable-workflow.yml@main
+    with:
+      tag: ${{ github.ref_name }}
+      prerelease: true
