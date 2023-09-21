@@ -2,6 +2,15 @@ name: Callable workflow with workflow_dispatch inputs required
 
 on:
   workflow_call:
+    inputs:
+      tag:
+        description: Tag to use generating offline installer
+        required: true
+      prerelease:
+        description: Is the release a pre release?
+        type: boolean
+        required: true
+        default: false
   workflow_dispatch:
     inputs:
       tag:
