@@ -1,6 +1,7 @@
 name: Callable workflow with workflow_dispatch inputs required
 
 on:
+  workflow_call:
   workflow_dispatch:
     inputs:
       tag:
