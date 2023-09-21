@@ -1,0 +1,23 @@
+name: Callable workflow with workflow_dispatch inputs required
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to use generating offline installer
+        required: true
+      prerelease:
+        description: Is the release a pre release?
+        type: boolean
+        required: true
+        default: false
+
+jobs:
+  my-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Just echo something
+        run: |
+          echo "The github refname is: ${{ github.ref_name }}"
+          echo "The workflow_dispatch:inputs for tag is: ${{ inputs.tag }}"
+          
