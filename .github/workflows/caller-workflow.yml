@@ -8,7 +8,7 @@ on:
 
 jobs:
   call-reusable-workflow:
-    uses: TrevorBenson/itsatest/.github/workflow/callable-workflow.yml@main
+    uses: TrevorBenson/itsatest/.github/workflows/callable-workflow.yml@main
     with:
       tag: ${{ github.ref_name }}
       prerelease: true
