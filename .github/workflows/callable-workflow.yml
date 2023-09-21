@@ -5,6 +5,7 @@ on:
     inputs:
       tag:
         description: Tag to use generating offline installer
+        type: string
         required: true
       prerelease:
         description: Is the release a pre release?
@@ -15,6 +16,7 @@ on:
     inputs:
       tag:
         description: Tag to use generating offline installer
+        type: string
         required: true
       prerelease:
         description: Is the release a pre release?
