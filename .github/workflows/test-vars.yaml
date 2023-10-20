@@ -83,6 +83,6 @@ jobs:
     environment: ghcr
     steps:
       - name: Examine ghcr environment VAR1 variable
-        run: echo The VAR1 from the ghcr environment is: ${{ env.VAR1}}
+        run: echo The VAR1 from the ghcr environment is ${{ env.VAR1}}
       - name: Examine ghcr secret REGISTRY_PASSWORD, which will not print
-        run: echo The REGISTRY_PASSWORD from the ghcr environment is: ${{ secrets.REGISTRY_PASSWORD }}
+        run: echo The REGISTRY_PASSWORD from the ghcr environment is ${{ secrets.REGISTRY_PASSWORD }}
