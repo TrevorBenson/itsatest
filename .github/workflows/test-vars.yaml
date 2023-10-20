@@ -1,9 +1,11 @@
 name: Test variables
 on:
   workflow_dispatch:
+
 env:
   # Setting an environment variable with the value of a configuration variable
   G_ACCOUNT: ${{ vars.G_ACCOUNT }}
+
 jobs:
   test-gh-workflow-variables:
     runs-on: ubuntu-latest
