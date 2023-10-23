@@ -1,4 +1,4 @@
-name: runner space
+name: Check runner build space
 
 on:
   workflow_dispatch:
