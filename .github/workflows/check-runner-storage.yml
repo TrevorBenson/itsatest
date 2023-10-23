@@ -34,5 +34,5 @@ jobs:
     - name: Check docker paths
       run: |
         sudo find /var/lib/docker
-    - name: Check docker binary pulls images normally
-      run: docker run hello-world
+    - name: Check for packages to reinstall
+      run: dpkg -l docker\*
