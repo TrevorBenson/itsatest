@@ -13,6 +13,9 @@ jobs:
         free
         echo "Available storage:"
         df -h
+    - name: Check docker paths
+      run: |
+        find /var/lib/docker
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
       with:
