@@ -34,5 +34,8 @@ jobs:
     - name: Check docker paths
       run: |
         sudo find /var/lib/docker
-    - name: Check for packages to reinstall
-      run: dpkg -l docker\*
+    - name: Reinstall docker
+      run: apt-get -y install --reinstall docker\*
+    - name: Check docker paths
+      run: |
+        sudo find /var/lib/docker
