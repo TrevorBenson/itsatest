@@ -31,3 +31,8 @@ jobs:
       run: |
         sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/share/boost "$AGENT_TOOLSDIRECTORY"
         df -h
+    - name: Check docker paths
+      run: |
+        sudo find /var/lib/docker
+    - name: Check docker binary
+      run: docker
