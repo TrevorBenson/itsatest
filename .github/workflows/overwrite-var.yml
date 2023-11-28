@@ -1,0 +1,30 @@
+name: Overwrite variable test
+on:
+  workflow_dispatch:
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  G_ACCOUNT: ${{ vars.G_ACCOUNT }}
+
+jobs:
+  test-overwriting-created-variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a variable named VERSION using environment file
+        run: |
+          echo -e "VERSION=1.99.20" >> $GITHUB_ENV
+      - name: Create a variable named VERSION2 using environment file
+        run: |
+          echo -e "VERSION2=1.99.20" >> $GITHUB_ENV
+      - name: Change VERSION variable with sed
+        run: |
+          sed -i 's/VERSION=1.99.20/VERSION=X/' $GITHUB_ENV
+      - name: Change VERSION2 variable by appending
+        run: |
+          echo -e "VERSION2=X" >> $GITHUB_ENV
+      - name: Examine VERSION
+        env:
+          VERSION: ${{ env.VERSION }}
+          VERSION2: ${{ env.VERSION2 }}
+        run: |
+          echo -e "Variables \n\t- VERSION: ${VERSION} \n\t\t VERSION2: ${VERSION2}"
